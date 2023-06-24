@@ -9,30 +9,17 @@ int main(void)
 {
 	long i = 612852475143;
 
-	long largestPrimeFactor = 2;
+	long y, maxf;
 
-	int k;
+	double square = sqrt(i);
 
-	while (i % 2 == 0)
+	for (y = 1; y <= square; y++)
 	{
-		i = i / 2;
-	}
-	for (k = 3; k <= sqrt(i); k += 2)
-	{
-		while (i % k == 0)
+		if (i % y == 0)
 		{
-			i = i / k;
+			maxf = i / y;
 		}
-		largestPrimeFactor = k;
-
-		i = i / k;
 	}
-	if (i > largestPrimeFactor)
-	{
-		largestPrimeFactor = i;
-
-	}
-	printf("%ld", largestPrimeFactor);
-	printf("\n");
+	printf("%ld\n", maxf);
 	return (0);
 }
