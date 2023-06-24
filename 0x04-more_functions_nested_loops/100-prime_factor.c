@@ -7,9 +7,9 @@
  */
 int main(void)
 {
-	long int i = 612852475143;
+	long i = 612852475143;
 
-	long int largestPrimeFactor = 2;
+	long largestPrimeFactor = 2;
 
 	int k;
 
@@ -24,11 +24,13 @@ int main(void)
 			i = i / k;
 		}
 		largestPrimeFactor = k;
+
 		i = i / k;
 	}
 	if (i > largestPrimeFactor)
 	{
 		largestPrimeFactor = i;
+
 	}
 	printf("%ld", largestPrimeFactor);
 	printf("\n");
