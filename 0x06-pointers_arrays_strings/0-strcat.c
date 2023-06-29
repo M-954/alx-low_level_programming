@@ -16,11 +16,6 @@ char *_strcat(char *dest, char *src)
 	{
 		ptr++;
 	}
-	if (ptr != dest)
-	{
-		*ptr = ' ';
-		ptr++;
-	}
 	while (*src != '\0')
 	{
 		*ptr = *src;
