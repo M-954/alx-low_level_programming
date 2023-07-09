@@ -10,7 +10,9 @@
  */
 int main(int argc, char *argv[])
 {
-	int a, i;
+	int i;
+
+	char *e;
 
 	int sum = 0;
 
@@ -21,14 +23,14 @@ int main(int argc, char *argv[])
 	}
 	for (i = 1; i < argc; i++)
 	{
-		a = atoi(argv[i]);
+		long num = strtol(argv[i], &e, 10);
 
-		if (a == 0 && argv[i][0] != '0')
+		if (*e != '\0')
 		{
 			printf("Error\n");
 			return (1);
 		}
-		sum += a;
+		sum += (int)num;
 	}
 	printf("%d\n", sum);
 	return (0);
