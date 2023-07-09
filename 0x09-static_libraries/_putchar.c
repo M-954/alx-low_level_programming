@@ -3,7 +3,7 @@
 /**
  * _putchar - prints out char c
  *@c: character to printout
- * 
+ *
  * Return: On success 1
  * On error, -1 is returned, and errno is set appropriately
  */
