@@ -33,7 +33,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		n = len2;
 	}
 
-	p = (char *)malloc(sizeof(char) * (len1 + n) + 1);
+	p = (char *)malloc(sizeof(char) * (len1 + n + 1));
 
 	strcpy(p, s1);
 
