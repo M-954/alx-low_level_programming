@@ -34,15 +34,15 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	p = (char *)malloc(sizeof(char) * (len1 + n + 1));
 
+	if (p == NULL)
+	{
+		return (NULL);
+	}
 	strcpy(p, s1);
 
 	strncat(p, s2, n);
 
 	p[len1 + n] = '\0';
 
-	if (p == NULL)
-	{
-		return (NULL);
-	}
 	return (p);
 }
