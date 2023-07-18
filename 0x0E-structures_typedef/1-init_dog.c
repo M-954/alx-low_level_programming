@@ -1,7 +1,7 @@
 #include "dog.h"
 #include <stdlib.h>
 /**
- * struct dog - initializes struct dog
+ * init_dog - initializes struct dog
  * @d: pointer to dog
  * @name: holds name
  * @age: holds age
@@ -9,13 +9,10 @@
  */
 void init_dog(struct dog *d, char *name, float age, char *owner)
 {
-	if (d == NULL)
+	if (d != NULL)
 	{
-		d = malloc(sizeof(struct dog));
+	d->name = name;
+	d->age = age;
+	d->owner = owner;
 	}
-	d -> name = name;
-		
-	d -> age = age;
-		
-	d -> owner = owner;
 }
