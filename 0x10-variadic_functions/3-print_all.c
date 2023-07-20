@@ -25,7 +25,7 @@ void p_float(va_list args)
 	printf("%f", va_arg(args, double));
 }
 /**
- * p_char * - prints string
+ * p_string - prints string
  * @args: argument
  */
 void p_string(va_list args)
