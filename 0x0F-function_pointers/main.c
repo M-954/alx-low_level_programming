@@ -1,55 +1,48 @@
+#include "3-calc.h"
 #include <stdio.h>
-#include "function_pointers.h"
-
+#include <stdlib.h>
 /**
- * is_98 - check if a number is equal to 98
- * @elem: the integer to check
- *
- * Return: 0 if false, something else otherwise.
+ * main - get_op_func has operators correlated with
+ * func signs and funcs from op_func
+ * if not 4 arguments, return Error & exit 98
+ * if op is null, return Error & exit 99
+ * if div or mod 0, return Error & exit 100
+ * run calc, input one, operator, input two = pointer res to get_op
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: 0
  */
-int is_98(int elem)
+int main(int argc, char *argv[])
 {
-    return (98 == elem);
-}
+	int one, two, ans;
+	int (*res)(int, int);
+	char *get_op;
 
-/**
- * is_strictly_positive - check if a number is greater than 0
- * @elem: the integer to check
- *
- * Return: 0 if false, something else otherwise.
- */
-int is_strictly_positive(int elem)
-{
-    return (elem > 0);
-}
+	if (argc != 4)
 
+	{
+		printf("Error\n");
+		exit(98);
+	}
+	one = atoi(argv[1]);
+	two = atoi(argv[3]);
+	get_op = argv[2];
 
-/**
- * abs_is_98 - check if the absolute value of a number is 98
- * @elem: the integer to check
- *
- * Return: 0 if false, something else otherwise.
- */
-int abs_is_98(int elem)
-{
-    return (elem == 98 || -elem == 98);
-}
+	if (get_op_func(argv[2]) == NULL || argv[2][1] != '\0')
+	{
+		printf("Error\n");
+		exit(99);
+	}
 
-/**
- * main - check the code
- *
- * Return: Always 0.
- */
-int main(void)
-{
-    int array[20] = {0, -98, 98, 402, 1024, 4096, -1024, -98, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 98};
-    int index;
+	if ((*get_op == '/' || *get_op == '%') && (*argv[3] == '0'))
+	{
+		printf("Error\n");
+		exit(100);
+	}
 
-    index = int_index(array, 20, is_98);
-    printf("%d\n", index);
-    index = int_index(array, 20, abs_is_98);
-    printf("%d\n", index);
-    index = int_index(array, 20, is_strictly_positive);
-    printf("%d\n", index);
-    return (0);
+	res = get_op_func(get_op);
+	ans = res(one, two);
+
+	printf("%d\n", ans);
+	return (0);
 }
