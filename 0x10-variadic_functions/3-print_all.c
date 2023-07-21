@@ -33,7 +33,7 @@ void p_string(va_list args)
 	char *str;
 
 	str = va_arg(args, char*);
-	(str == NULL) ? printf("(nil)") : printf("%s", str); 
+	(str == NULL) ? printf("(nil)") : printf("%s", str);
 }
 /**
  * print_all - print everything
