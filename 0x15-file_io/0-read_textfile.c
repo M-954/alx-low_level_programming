@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * read_text - reads a text file and prints it out
+ * read_textfile - reads a text file and prints it out
  * @filename: pointer to a filename
  * @letters: number of characters to print out
  *
