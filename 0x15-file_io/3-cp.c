@@ -26,8 +26,7 @@ void copyfile(int ffrom, int fto, char *buf, char *file_from, char *file_to)
 {
 	ssize_t readfile, writefile;
 
-	readfile = 1024;
-	while (readfile == 1024)
+	while (readfile > 0)
 	{
 		readfile = read(ffrom, buf, 1024);
 		writefile = write(fto, buf, readfile);
