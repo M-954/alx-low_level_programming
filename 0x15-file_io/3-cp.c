@@ -26,14 +26,15 @@ void copyfile(int ffrom, int fto, char *buf, char *file_from, char *file_to)
 {
 	ssize_t readfile, writefile;
 
+	readfile = read(ffrom, buf, 1024);
 	while (readfile > 0)
 	{
-		readfile = read(ffrom, buf, 1024);
 		writefile = write(fto, buf, readfile);
 		if (writefile == -1)
 		{
 		errorfunc("Error: Can't write to %s", file_to, 99);
 		}
+		readfile = read(ffrom, buf, 1024);
 	}
 	if (readfile == -1)
 	{
