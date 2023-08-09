@@ -19,29 +19,28 @@ void errorfunc(const char *msg, const char *filename, int code)
  * @ffrom: file to copy from
  * @fto: file to copy to
  * @buf: buffer
- * @n: buffer size
  * @file_from: pointer to the file to copy from
  * @file_to: pointer to the file to copy to
  */
-void copyfile(int ffrom, int fto, char *buf, size_t BUFFSIZE, char *file_from, char *file_to)
+void copyfile(int ffrom, int fto, char *buf, char *file_from, char *file_to)
 {
-	ssize_t readfile = read(ffrom, buf, BUFFSIZE);
+	ssize_t readfile, writefile;
 
-	while (readfile > 0)
+	readfile = 1024;
+	while (readfile == 1024)
 	{
-	ssize_t writefile = write(fto, buf, readfile);
-
-	if (writefile != readfile)
-	{
+		readfile = read(ffrom, buf, 1024);
+		writefile = write(fto, buf, readfile);
+		if (writefile == -1)
+		{
 		errorfunc("Error: Can't write to %s", file_to, 99);
-	}
+		}
 	}
 	if (readfile == -1)
 	{
 		errorfunc("Error: Can't read to %s", file_from, 98);
 	}
 }
-#define BUFFSIZE 1024
 /**
  * main - entry point
  * @argc: argument count
@@ -55,7 +54,7 @@ int main(int argc, char *argv[])
 	char *file_to;
 	int fto;
 	int ffrom;
-	char buf[BUFFSIZE];
+	char buf[1024];
 
 	if (argc != 3)
 	{
@@ -71,11 +70,10 @@ int main(int argc, char *argv[])
 	fto = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fto == -1)
 	{
-		close(ffrom);
 		errorfunc("Error: Can't write to %s", argv[2], 99);
 	}
 
-	copyfile(ffrom, fto, buf, BUFFSIZE, file_from, file_to);
+	copyfile(ffrom, fto, buf, file_from, file_to);
 
 	if (close(ffrom) == -1)
 		errorfunc("Error: Can't close fd %d", "ffrom", 100);
