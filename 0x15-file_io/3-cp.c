@@ -38,7 +38,7 @@ void copyfile(int ffrom, int fto, char *buf, char *file_from, char *file_to)
 	}
 	if (readfile == -1)
 	{
-		errorfunc("Error: Can't read to %s", file_from, 98);
+		errorfunc("Error: Can't read from %s", file_from, 98);
 	}
 }
 /**
